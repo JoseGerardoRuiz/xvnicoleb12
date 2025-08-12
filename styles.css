@@ -1,35 +1,41 @@
-body {
-  margin: 0;
-  font-family: 'Cinzel', serif;
-  background: #1a1a1a;
-  color: white;
-  text-align: center;
+.oculto { display: none; }
+
+.envelope {
+  transition: all 0.8s ease-in-out;
+  transform-style: preserve-3d;
+}
+.envelope-flap {
+  transition: transform 0.8s ease-in-out;
+  transform-origin: bottom center;
+}
+.envelope.opened .envelope-flap {
+  transform: rotateX(-180deg);
+}
+.envelope.hidden {
+  opacity: 0;
+  transform: scale(0.8);
+  pointer-events: none;
 }
 
-#pantalla-inicial {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-.sobre {
+.wax-seal {
+  transition: all 0.6s ease-in-out;
   cursor: pointer;
-  transition: transform 0.3s ease;
 }
-.sobre:hover {
-  transform: scale(1.05);
+.wax-seal:hover {
+  transform: scale(1.1);
 }
-.sobre img {
-  max-width: 300px;
-}
-
-.oculto {
-  display: none;
+.envelope.opened .wax-seal {
+  transform: scale(0) rotate(180deg);
+  opacity: 0;
 }
 
-#formulario-codigo {
-  padding: 20px;
+.magical-glow {
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+  animation: glow 2s ease-in-out infinite alternate;
+}
+@keyframes glow {
+  from { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+  to { box-shadow: 0 0 30px rgba(255, 215, 0, 0.6); }
 }
 
 .menu-lateral {
@@ -58,3 +64,4 @@ main {
   margin-left: 240px;
   padding: 20px;
 }
+

@@ -2,24 +2,30 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Invitación XV Años - Abril Nicole</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 flex items-center justify-center p-4">
 
-  <!-- Pantalla de bienvenida con el sobre -->
-  <div id="pantalla-inicial">
-    <div class="sobre" id="sobre">
-      <img src="sobre-hogwarts.png" alt="Sobre Hogwarts">
-      <p>Haz clic para abrir tu invitación</p>
+  <!-- Sobre Hogwarts -->
+  <div id="pantalla-inicial" class="relative">
+    <div id="envelope" class="envelope magical-glow">
+      <div class="w-80 h-56 bg-gradient-to-br from-amber-100 to-amber-200 rounded-lg shadow-2xl relative border-2 border-amber-300"></div>
+      <div class="envelope-flap absolute top-0 left-0 w-80 h-40 bg-gradient-to-br from-amber-200 to-amber-300 rounded-t-lg border-2 border-amber-300 border-b-0" style="clip-path: polygon(0 0, 100% 0, 50% 100%);"></div>
+      <div class="wax-seal absolute top-28 left-1/2 transform -translate-x-1/2 w-20 h-20 hogwarts-crest rounded-full border-4 border-red-900 flex items-center justify-center z-10 shadow-lg" onclick="openEnvelope()">
+        <span class="text-yellow-400 font-bold text-xl">H</span>
+      </div>
     </div>
   </div>
 
   <!-- Formulario de código -->
-  <div id="formulario-codigo" class="oculto">
-    <h2>Introduce tu código de invitación</h2>
-    <input type="text" id="codigo" placeholder="Ej: HP123">
-    <button id="btn-validar">Acceder</button>
+  <div id="formulario-codigo" class="code-form oculto parchment p-6 rounded-lg shadow-2xl border-2 border-amber-400">
+    <h2 class="text-xl font-bold text-green-800 mb-4">Acceso Restringido</h2>
+    <input type="text" id="codigo" placeholder="Ingresa tu código..." class="w-full p-2 border-2 border-amber-400 rounded-lg mb-4">
+    <button id="btn-validar" class="w-full bg-red-800 hover:bg-red-900 text-white font-bold py-2 px-4 rounded-lg">✨ Revelar Invitación ✨</button>
+    <div id="errorMessage" class="text-red-600 text-sm text-center oculto mt-2">Código incorrecto. Inténtalo de nuevo.</div>
   </div>
 
   <!-- Menú lateral mágico -->
@@ -35,11 +41,17 @@
       </ul>
     </nav>
     <main id="contenido">
-      <h1>Bienvenido</h1>
-      <p>Selecciona una opción del menú</p>
+      <section id="invitacion" class="oculto">
+        <h1>Bienvenido, <span id="nombre-invitado"></span></h1>
+        <p>Boletos asignados: <span id="num-boletos"></span></p>
+        <div id="qr-container"></div>
+      </section>
     </main>
   </div>
 
-  <script src="app.js"></script>
+  <!-- Librería QR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <!-- Firebase + lógica -->
+  <script type="module" src="app.js"></script>
 </body>
 </html>
